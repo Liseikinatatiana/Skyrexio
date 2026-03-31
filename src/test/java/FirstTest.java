@@ -11,7 +11,6 @@ public class FirstTest {
     //3 поиск элементов и внесение данных
     //4 проверка
 
-
     @Test
     public void checkLogin() {
         WebDriver browser = new ChromeDriver();
@@ -21,9 +20,7 @@ public class FirstTest {
         browser.findElement(By.cssSelector("[id=login-button]")).click();
         String title = browser.findElement(By.cssSelector("[data-test='title']")).getText();
 
-        assertEquals(title,"Products");
-
+        assertEquals(title, "Products");
         browser.quit();
-
     }
 }
