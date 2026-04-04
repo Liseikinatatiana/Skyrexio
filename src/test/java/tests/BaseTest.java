@@ -15,7 +15,7 @@ public class BaseTest {
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        //options.addArguments("headless");
+        options.addArguments("headless");
         options.addArguments("guest");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -26,5 +26,3 @@ public class BaseTest {
         driver.quit();
     }
 }
-
-
