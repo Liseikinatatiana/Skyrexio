@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends BasePage {
     // Локаторы
     private final By usernameInput = By.xpath("//*[@id='user-name']");
-    private final By passwordInput = By.xpath("//*[@data-test='password']");
+    private final By passwordInput = By.cssSelector(DATA_TEST_PATTERN.formatted("password"));
     private final By loginButton = By.cssSelector("[id=login-button]");
-    private final By errorMessage = By.xpath("//*[@data-test='error']");
+    private final By errorMessage = By.cssSelector(DATA_TEST_PATTERN.formatted("error"));
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -16,7 +16,11 @@ public class LoginPage extends BasePage {
 
     //Метод для открытия страницы
     public void open() {
-        driver.get(BASE_URL);
+        driver.get(BasePage.BASE_URL);
+    }
+
+    public void open(final String url) {
+        driver.get(BasePage.BASE_URL + url);
     }
 
     //Метод для ввода имени пользователя
