@@ -34,5 +34,4 @@ public class ProductsPage extends BasePage {
     public boolean pageTitleDisplayed() {
         return driver.findElement(pageTitle).isDisplayed();
     }
-
 }

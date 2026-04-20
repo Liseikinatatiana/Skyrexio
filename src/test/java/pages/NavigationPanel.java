@@ -23,5 +23,4 @@ public class NavigationPanel {
     public String checkCounterColor() {
        return driver.findElement(cartBadge).getCssValue("background-color");
     }
-
 }
