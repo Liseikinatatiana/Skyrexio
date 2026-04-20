@@ -22,9 +22,9 @@ public class ProductsTest extends BaseTest {
         for (String goods : goodsList) {
             productsPage.addToCart(goods);
         }
-        assertEquals(productsPage.checkCounterValue(), "4");
-        assertEquals(productsPage.checkCounterColor(), "rgba(226, 35, 26, 1)");
-        productsPage.goToCart();
+        assertEquals(productsPage.navigationPanel.checkCounterValue(), "4");
+        assertEquals(productsPage.navigationPanel.checkCounterColor(), "rgba(226, 35, 26, 1)");
+        productsPage.navigationPanel.goToCart();
         assertEquals(yourCartPage.getTitle(), "Your Cart");
     }
 }
