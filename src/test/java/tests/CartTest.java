@@ -3,6 +3,8 @@ package tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import user.User;
+import user.UserFactory;
 
 import static org.testng.Assert.*;
 
@@ -10,9 +12,10 @@ public class CartTest extends BaseTest {
     final String goodsName = "Test.allTheThings() T-Shirt (Red)";
 
     @Test
-    public void camelCase() {
+    public void checkGoodsInCart () {
+        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user.getUsername(),user.getPassword());
         productsPage.addToCart(goodsName);
         productsPage.navigationPanel.goToCart();
 

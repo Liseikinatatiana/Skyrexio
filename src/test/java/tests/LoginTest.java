@@ -2,6 +2,9 @@ package tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import user.User;
+import user.UserFactory;
+import utils.PropertyReader;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -10,28 +13,29 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void checkLogin() {
+        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user.getUsername(), user.getPassword());
 
         assertEquals(productsPage.getTitle(), "Products");
     }
 
     @Test(dataProvider = "loginData")
-    public void checkIncorrectLogin(String user, String password, String errorMessage) {
+    public void checkIncorrectLogin(User user) {
         loginPage.open();
-        loginPage.login(user, password);
+        loginPage.login(user.getUsername(), user.getPassword());
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "The error message fails to appear");
-        assertEquals(loginPage.getErrorMessageText(), errorMessage, "Error message doesn`t correspond");
+        assertEquals(loginPage.getErrorMessageText(), user.getErrorMessage(), "Error message doesn`t correspond");
     }
 
     @DataProvider
     public Object[][] loginData() {
         return new Object[][]{
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"},
-                {"Standard_user", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"}
+                {UserFactory.LockedOutUser()},
+                {UserFactory.emptyUsernameUser()},
+                {UserFactory.emptyPasswordUser()},
+                {UserFactory.incorrectUser()}
         };
     }
 }

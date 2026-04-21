@@ -1,6 +1,8 @@
 package tests;
 
 import org.testng.annotations.Test;
+import user.User;
+import user.UserFactory;
 
 import java.util.List;
 
@@ -13,8 +15,9 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void checkGoodsAdded() {
+        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user.getUsername(),user.getPassword());
         assertTrue(productsPage.pageTitleDisplayed());
         assertEquals(productsPage.getGoodsQuantity(), 6);
         productsPage.addToCart();

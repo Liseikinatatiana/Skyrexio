@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
 import pages.ProductsPage;
 import pages.YourCartPage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
