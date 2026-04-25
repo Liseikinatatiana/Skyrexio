@@ -13,6 +13,7 @@ public class YourCartPage extends BasePage {
     private final By pageTitle = By.cssSelector(DATA_TEST_PATTERN.formatted("title"));
     private final By product = By.cssSelector(DATA_TEST_PATTERN.formatted("inventory-item-name"));
     private final By continueShoppingBtn = By.id("continue-shopping");
+    private final By checkoutBtn = By.id("checkout");
 
     public YourCartPage(WebDriver driver) {
       super(driver);
@@ -31,5 +32,10 @@ public class YourCartPage extends BasePage {
             names.add(product.getText());
         }
         return names;
+    }
+
+    public void clickCheckout(){
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn));
+        driver.findElement(checkoutBtn).click();
     }
 }

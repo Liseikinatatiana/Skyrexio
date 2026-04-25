@@ -20,8 +20,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData")
-    public void checkIncorrectLogin() {
-        User user = UserFactory.standardUser();
+    public void checkIncorrectLogin(User user) {
         loginPage.open();
         loginPage.login(user.getUsername(), user.getPassword());
 
