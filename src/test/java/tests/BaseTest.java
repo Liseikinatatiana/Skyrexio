@@ -10,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 import pages.YourCartPage;
@@ -21,6 +22,7 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     YourCartPage yourCartPage;
+    CheckoutPage checkoutPage;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -44,6 +46,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         yourCartPage = new YourCartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
     @AfterMethod

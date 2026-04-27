@@ -3,18 +3,15 @@ package tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.CheckoutOverviewPage;
-import pages.CheckoutPage;
-import user.User;
-import user.UserFactory;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
+import static user.UserFactory.standardUser;
 
 public class CheckoutTest extends BaseTest {
     private void addProductAndGoToCheckout() {
-        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login(user.getUsername(), user.getPassword());
+        loginPage.login(standardUser());
         productsPage.addToCart();
         productsPage.navigationPanel.goToCart();
         yourCartPage.clickCheckout();
@@ -23,29 +20,37 @@ public class CheckoutTest extends BaseTest {
     @Test
     public void testCheckoutPageTitle() {
         addProductAndGoToCheckout();
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
         assertEquals(checkoutPage.getTitle(), "Checkout: Your Information");
     }
 
-    @Test(dataProvider = "checkoutData")
-    public void testCheckoutValidation(String firstName, String lastname, String postalCode, String expectedError) {
+    @Test(dataProvider = "validCheckoutData")
+    public void testSuccessfulCheckout(String firstName, String lastname, String postalCode) {
         addProductAndGoToCheckout();
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
         checkoutPage.fillCheckoutForm(firstName, lastname, postalCode);
-        if (expectedError.isEmpty()) {
-            CheckoutOverviewPage overviewPage = checkoutPage.clickContinue();
-            assertEquals(overviewPage.getTitle(), "Checkout: Overview");
-        } else {
-            checkoutPage.clickContinue();
-            assertTrue(checkoutPage.isErrorMessageDisplayed());
-            assertEquals(checkoutPage.getErrorMessageText(), expectedError);
-        }
+        CheckoutOverviewPage overviewPage = checkoutPage.clickContinue();
+        assertEquals(overviewPage.getTitle(), "Checkout: Overview");
     }
 
-    @DataProvider(name = "checkoutData")
-    public Object[][] checkoutData() {
+    @Test(dataProvider = "invalidCheckoutData")
+    public void testCheckoutValidationError(String firstName, String lastName, String postalCode, String expectedError) {
+        addProductAndGoToCheckout();
+        checkoutPage.fillCheckoutForm(firstName, lastName, postalCode);
+        checkoutPage.clickContinue();
+        assertTrue(checkoutPage.isErrorMessageDisplayed());
+        assertEquals(checkoutPage.getErrorMessageText(), expectedError);
+    }
+
+    @DataProvider(name = "validCheckoutData")
+    public Object[][] validCheckoutData() {
         return new Object[][]{
-                {"Mark", "Snoy", "12345", ""},
+                {"Mark", "Snoy", "12345"}
+        };
+    }
+
+    @DataProvider(name = "invalidCheckoutData")
+    public Object[][] invalidCheckoutData() {
+        return new Object[][]{
+
                 {"", "Snoy", "12345", "Error: First Name is required"},
                 {"Mark", "", "12345", "Error: Last Name is required"},
                 {"Mark", "Snoy", "", "Error: Postal Code is required"},

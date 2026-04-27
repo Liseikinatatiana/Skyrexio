@@ -7,14 +7,14 @@ import user.UserFactory;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.standardUser;
 
 public class LoginTest extends BaseTest {
 
     @Test
     public void checkLogin() {
-        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login(user.getUsername(), user.getPassword());
+        loginPage.login(standardUser());
 
         assertEquals(productsPage.getTitle(), "Products");
     }
@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
     @Test(dataProvider = "loginData")
     public void checkIncorrectLogin(User user) {
         loginPage.open();
-        loginPage.login(user.getUsername(), user.getPassword());
+        loginPage.login(user);
 
         assertTrue(loginPage.isErrorMessageDisplayed(), "The error message fails to appear");
         assertEquals(loginPage.getErrorMessageText(), user.getErrorMessage(), "Error message doesn`t correspond");

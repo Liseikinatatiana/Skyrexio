@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import user.User;
 
 public class LoginPage extends BasePage {
     // Локаторы
@@ -43,6 +44,10 @@ public class LoginPage extends BasePage {
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
+    }
+
+    public void login(User user) {
+        login(user.getUsername(),user.getPassword());
     }
 
     //Проверка отображения сообщения об ошибке

@@ -16,42 +16,53 @@ public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
+
     public String getTitle() {
-        return driver.findElement(pageTitle).getText();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle)).getText();
     }
-    public void enterFirstName (String firstName) {
+
+    public void enterFirstName(String firstName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameInput));
         driver.findElement(firstNameInput).sendKeys(firstName);
     }
+
     public void enterLastName(String lastName) {
         driver.findElement(lastNameInput).sendKeys(lastName);
     }
-    public void enterPostalCode(String postalCode){
+
+    public void enterPostalCode(String postalCode) {
         driver.findElement(postalCodeInput).sendKeys(postalCode);
     }
-    public void fillCheckoutForm(String firstName, String lastName, String postalCode){
+
+    public void fillCheckoutForm(String firstName, String lastName, String postalCode) {
         enterFirstName(firstName);
         enterLastName(lastName);
         enterPostalCode(postalCode);
     }
+
     public void clickCancel() {
         driver.findElement(cancelBtn).click();
     }
-    public boolean isErrorMessageDisplayed(){
+
+    public boolean isErrorMessageDisplayed() {
         return driver.findElement(errorMessage).isDisplayed();
     }
-    public String getErrorMessageText(){
+
+    public String getErrorMessageText() {
         return driver.findElement(errorMessage).getText();
     }
-    public boolean isFirstNameEmpty(){
-        return driver.findElement(firstNameInput).getText().isEmpty();
+
+    public boolean isFirstNameEmpty() {
+        return driver.findElement(firstNameInput).getAttribute("value").isEmpty();
     }
-    public void clearForm(){
+
+    public void clearForm() {
         driver.findElement(firstNameInput).clear();
         driver.findElement(lastNameInput).clear();
         driver.findElement(postalCodeInput).clear();
     }
-    public CheckoutOverviewPage clickContinue(){
+
+    public CheckoutOverviewPage clickContinue() {
         driver.findElement(continueBtn).click();
         return new CheckoutOverviewPage(driver);
     }
