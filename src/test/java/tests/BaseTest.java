@@ -31,7 +31,7 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            //options.addArguments("headless");
+            options.addArguments("headless");
             options.addArguments("guest");
 
             driver = new ChromeDriver(options);

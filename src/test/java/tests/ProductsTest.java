@@ -1,13 +1,12 @@
 package tests;
 
 import org.testng.annotations.Test;
-import user.User;
-import user.UserFactory;
 
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.standardUser;
 
 public class ProductsTest extends BaseTest {
     List<String> goodsList =
@@ -15,9 +14,8 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void checkGoodsAdded() {
-        User user = UserFactory.standardUser();
         loginPage.open();
-        loginPage.login(user.getUsername(),user.getPassword());
+        loginPage.login(standardUser());
         assertTrue(productsPage.pageTitleDisplayed());
         assertEquals(productsPage.getGoodsQuantity(), 6);
         productsPage.addToCart();

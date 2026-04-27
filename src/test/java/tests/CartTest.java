@@ -1,8 +1,6 @@
 package tests;
 
 import org.testng.annotations.Test;
-import user.User;
-import user.UserFactory;
 
 import static org.testng.Assert.*;
 import static user.UserFactory.standardUser;
