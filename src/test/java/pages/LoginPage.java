@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import user.User;
@@ -15,7 +16,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    //Метод для открытия страницы
+    @Step("Открытие страницы")
     public void open() {
         driver.get(BasePage.BASE_URL);
     }
@@ -24,38 +25,39 @@ public class LoginPage extends BasePage {
         driver.get(BasePage.BASE_URL + url);
     }
 
-    //Метод для ввода имени пользователя
+    @Step("Ввод имени пользователя")
     public void enterUsername(String username) {
         driver.findElement(usernameInput).sendKeys(username);
     }
 
-    //Метод для ввода пароля
+    @Step("Ввод пароля")
     public void enterPassword(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
 
-    //Метод для клика по кнопке логина
+    @Step("Нажатие на кнопку login")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
     }
 
-    //Комбинированный метод для логина
+    @Step("Логин с именем и паролем")
     public void login(String username, String password) {
         enterUsername(username);
         enterPassword(password);
         clickLoginButton();
     }
 
+    @Step("Логин пользователем")
     public void login(User user) {
-        login(user.getUsername(),user.getPassword());
+        login(user.getUsername(), user.getPassword());
     }
 
-    //Проверка отображения сообщения об ошибке
+    @Step("Проверка отображения сообщения об ошибке")
     public boolean isErrorMessageDisplayed() {
         return driver.findElement(errorMessage).isDisplayed();
     }
 
-    //Получение текста ошибки
+    @Step("Получение текста ошибки")
     public String getErrorMessageText() {
         return driver.findElement(errorMessage).getText();
     }

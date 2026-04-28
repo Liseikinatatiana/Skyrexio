@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -8,11 +9,18 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.standardUser;
 
+@Epic("Управление товарами")
+@Feature("Добавление товаров в корзину")
+@Owner("Лисейкина Татьяна 89168331085@mail.ru")
 public class ProductsTest extends BaseTest {
     List<String> goodsList =
             List.of("Test.allTheThings() T-Shirt (Red)", "Sauce Labs Onesie", "Sauce Labs Fleece Jacket");
 
-    @Test
+    @Test(description = "Проверка добавления товаров в корзину и обновления счетчиков", priority = 1)
+    @Story("Добавление нескольких товаров")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("Skyrexio")
+    @Issue("Skyrexio")
     public void checkGoodsAdded() {
         loginPage.open();
         loginPage.login(standardUser());
