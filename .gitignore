@@ -2,4 +2,6 @@
 target/
 build/
 *.iml
-*.xml
+*xm.
+allure-results/
+allure-report/

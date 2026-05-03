@@ -6,7 +6,7 @@ public class UserFactory {
     public static User standardUser() {
         return new User(
                 PropertyReader.getProperty("saucedemoo.user"),
-                PropertyReader.getProperty("saucedemoo.password"),null);
+                PropertyReader.getProperty("saucedemoo.password"), null);
     }
 
     public static User LockedOutUser() {

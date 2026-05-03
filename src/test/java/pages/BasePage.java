@@ -6,7 +6,6 @@ import utils.PropertyReader;
 
 import java.time.Duration;
 
-
 public class BasePage {
     public static final String BASE_URL = PropertyReader.getProperty("saucedemoo.url");
     public static final String DATA_TEST_PATTERN = "[data-test='%s']";
