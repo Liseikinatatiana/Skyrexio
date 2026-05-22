@@ -19,8 +19,8 @@ public class LoginTest extends BaseTest {
     @Test(description = "Проверка корректный логин", priority = 1)
     @Story("Успешный вход в систему")
     @Severity(SeverityLevel.BLOCKER)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void checkLogin() {
         loginPage.open();
         loginPage.login(standardUser());
@@ -31,8 +31,8 @@ public class LoginTest extends BaseTest {
     @Test(description = "Проверка некорректный логин с разными данными", dataProvider = "loginData", priority = 2)
     @Story("Неуспешный вход в систему")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void checkIncorrectLogin(User user) {
         loginPage.open();
         loginPage.login(user);

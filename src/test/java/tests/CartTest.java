@@ -16,8 +16,8 @@ public class CartTest extends BaseTest {
     @Test(description = "Проверка отображения добавленного товара в корзине", priority = 1)
     @Story("Отображение товаров в корзине")
     @Severity(SeverityLevel.BLOCKER)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void checkGoodsInCart() {
         loginPage.open();
         loginPage.login(standardUser());
@@ -32,8 +32,8 @@ public class CartTest extends BaseTest {
     @Test(description = "Проверка работы кнопки Checkout в корзине", priority = 2)
     @Story("Оформление заказа из корзины")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void checkCheckoutButton() {
         loginPage.open();
         loginPage.login(standardUser());
