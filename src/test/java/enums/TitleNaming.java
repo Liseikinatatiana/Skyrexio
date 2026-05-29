@@ -6,9 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum TitleNaming {
-    PRODUCTS("Productss"),
+    PRODUCTS("Products"),
     CART("Your Cart"),
-    CHECKOUT("Checkout: Your Information");
+    CHECKOUT("Checkout: Overview");
 
     private final String displayName;
 }

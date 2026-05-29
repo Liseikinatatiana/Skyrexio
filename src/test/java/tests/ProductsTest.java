@@ -20,8 +20,8 @@ public class ProductsTest extends BaseTest {
     @Test(description = "Проверка добавления товаров в корзину и обновления счетчиков", priority = 1)
     @Story("Добавление нескольких товаров")
     @Severity(SeverityLevel.BLOCKER)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void checkGoodsAdded() {
         loginPage.open();
         loginPage.login(standardUser());

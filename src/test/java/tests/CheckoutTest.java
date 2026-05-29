@@ -25,8 +25,8 @@ public class CheckoutTest extends BaseTest {
     @Test (description = "Проверка заголовка страницы оформления заказа", priority =1)
     @Story("Отображение страницы Checkout")
     @Severity(SeverityLevel.NORMAL)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void testCheckoutPageTitle() {
         addProductAndGoToCheckout();
         assertEquals(checkoutPage.getTitle(), "Checkout: Your Information");
@@ -35,8 +35,8 @@ public class CheckoutTest extends BaseTest {
     @Test(description ="Проверка успешного оформления заказа с валидными данными" , dataProvider = "validCheckoutData",priority = 2)
     @Story("Успешное заполнение формы")
     @Severity(SeverityLevel.BLOCKER)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void testSuccessfulCheckout(String firstName, String lastname, String postalCode) {
         addProductAndGoToCheckout();
         checkoutPage.fillCheckoutForm(firstName, lastname, postalCode);
@@ -47,8 +47,8 @@ public class CheckoutTest extends BaseTest {
     @Test(description = "Проверка валидации формы с некорректными данными", dataProvider = "invalidCheckoutData",priority = 3)
     @Story("Валидация полей формы")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("Skyrexio")
-    @Issue("Skyrexio")
+    @TmsLink("Saucedemo")
+    @Issue("Saucedemo")
     public void testCheckoutValidationError(String firstName, String lastName, String postalCode, String expectedError) {
         addProductAndGoToCheckout();
         checkoutPage.fillCheckoutForm(firstName, lastName, postalCode);

@@ -3,5 +3,6 @@ target/
 build/
 *.iml
 *xm.
+.allure/
 allure-results/
 allure-report/
